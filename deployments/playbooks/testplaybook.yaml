@@ -1,0 +1,21 @@
+---
+- hosts: all
+  user: ansible
+  become: yes
+  gather_facts: yes
+  tasks:
+  - name: install apache webserver
+    apt:
+      name: apache2
+      state: present
+
+  - name: install tree packages
+    apt:
+      name: tree
+      state: present
+
+  - name: download maven repo
+    get_url:
+      url: http://www-eu.apache.org/dist/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+      dest: /tmp
+      mode: "755"
